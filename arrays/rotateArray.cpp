@@ -16,9 +16,9 @@ void rotateRight(vector<int>& nums, int k) {
     k = k % n;
     if (k == 0) return;
 
-    reverse(nums, 0, n-1);
-    reverse(nums, 0, k-1);
-    reverse(nums, k, n-1);
+    reverse(nums, 0, n-1); //reverse all
+    reverse(nums, 0, k-1); //reverse first k
+    reverse(nums, k, n-1); //reverse from k to last
 }
 
 void rotateLeft(vector<int>& nums, int k) {
@@ -26,9 +26,9 @@ void rotateLeft(vector<int>& nums, int k) {
     k = k % n;
     if (k == 0) return;
 
-    reverse(nums, 0, k-1);
-    reverse(nums, k, n-1);
-    reverse(nums, 0, n-1);
+    reverse(nums, 0, k-1); //reverse first k
+    reverse(nums, k, n-1); //reverse from k to last
+    reverse(nums, 0, n-1); //reverse all
 }
 
 int main() {
