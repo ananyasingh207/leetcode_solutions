@@ -65,25 +65,22 @@ int missingNumber_BinarySearch(vector<int>& nums) {
     return l;
 }
 
-//
-// Sample Main Function
-//
 int main() {
     vector<int> nums = {3, 0, 1}; // Missing number = 2
     
     cout << "Input: [3,0,1]" << endl;
     cout << "XOR Method: " << missingNumber_XOR(nums) << endl;
 
-    nums = {3,0,1}; // reset
+    nums = {3,0,1}; 
     cout << "Sum Formula: " << missingNumber_Sum(nums) << endl;
 
-    nums = {3,0,1}; // reset
+    nums = {3,0,1}; 
     cout << "Sorting + Linear Scan: " << missingNumber_Sort(nums) << endl;
 
-    nums = {3,0,1}; // reset
+    nums = {3,0,1}; 
     cout << "Hashing/Set: " << missingNumber_Hash(nums) << endl;
 
-    nums = {3,0,1}; // reset
+    nums = {3,0,1}; 
     cout << "Binary Search: " << missingNumber_BinarySearch(nums) << endl;
 
     return 0;
