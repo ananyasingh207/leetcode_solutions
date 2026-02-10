@@ -1,27 +1,27 @@
 class Solution {
 public:
 
-    void helper(vector<int>& nums, vector<vector<int>>& ans, vector<int>& permutation, int index, unordered_map<int , bool>& visited){
-        if(permutation.size()==nums.size()){
-            ans.push_back(permutation);
+    void swap(int& a, int& b){
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
+    void helper(vector<int>& nums, vector<vector<int>>& ans, int index){
+        if(index==nums.size()){
+            ans.push_back(nums);
             return;
         }
-        for(int i=0;i<nums.size();i++){
-            if(!visited[nums[i]]){
-                permutation.push_back(nums[i]);
-                visited[nums[i]]=true;
-                helper(nums,ans,permutation,i+1,visited);
-                visited[permutation.back()]=false;
-                permutation.pop_back();
-            }
+        for(int i=index;i<nums.size();i++){
+            swap(nums[index],nums[i]);
+            helper(nums,ans,index+1);
+            swap(nums[index],nums[i]);
         }
     }
 
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
-        vector<int> permutation;
-        unordered_map<int , bool> visited;
-        helper(nums,ans,permutation,0,visited);
+        helper(nums,ans,0);
         return ans;
     }
 };
