@@ -18,11 +18,8 @@ public:
         if(q==nullptr || p==nullptr){
             return false;
         }
-        if(p->val!=q->val){
-            return false;
-        }
         bool isLeftSame = isSameTree(p->left,q->left);
         bool isRightSame = isSameTree(p->right,q->right);
-        return (isLeftSame && isRightSame && p->val==q->val);
+        return (p->val==q->val && isLeftSame && isRightSame);
     }
 };
