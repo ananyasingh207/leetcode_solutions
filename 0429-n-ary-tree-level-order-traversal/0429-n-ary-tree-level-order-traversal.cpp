@@ -32,11 +32,10 @@ public:
             int n = eq.size();
             for(int i=0;i<n;i++){
                 Node* front = eq.front();
-                int value = front->val;
-                level.push_back(value);
                 eq.pop();
+                level.push_back(front->val);
                 for(auto child : front->children){
-                    eq.push(child);
+                    if(child) eq.push(child);
                 }
             }
             ans.push_back(level);
