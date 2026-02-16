@@ -35,8 +35,7 @@ public:
                 int value = front->val;
                 level.push_back(value);
                 eq.pop();
-                auto children = front->children;
-                for(auto child : children){
+                for(auto child : front->children){
                     eq.push(child);
                 }
             }
