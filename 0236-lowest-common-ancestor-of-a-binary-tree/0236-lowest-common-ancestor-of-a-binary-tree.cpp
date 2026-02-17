@@ -22,12 +22,11 @@ public:
         if(left && right){
             return root;
         }
-        else if(left!=nullptr){
+        if(left!=nullptr){
             return left;
         }
         else{
             return right;
         }
-        return root;
     }
 };
