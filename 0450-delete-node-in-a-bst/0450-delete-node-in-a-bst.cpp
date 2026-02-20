@@ -31,6 +31,7 @@ public:
                 delete(temp);
             }
             else if(root->left!=nullptr && root->right!=nullptr){
+                //Inorder Successor = The smallest value in right subtree
                 TreeNode* inorderSuccessor = root->right;
                 while(inorderSuccessor->left!=nullptr){
                     inorderSuccessor=inorderSuccessor->left;
