@@ -27,9 +27,9 @@ public:
         return true;
     }
 
-    void nQueens(vector<string> &board,int n, int row, vector<vector<string>> &ans){
+    void nQueens(vector<string> &board,int n, int row, int &ans){
         if(row==n){
-            ans.push_back(board);
+            ans++;
         }
         for(int i=0;i<n;i++){
             if(isSafe(board,row,i,n)){
@@ -42,8 +42,8 @@ public:
 
     int totalNQueens(int n) {
         vector<string> board(n,string(n,'.'));
-        vector<vector<string>> ans;
+        int ans=0;
         nQueens(board,n,0,ans);
-        return ans.size();
+        return ans;
     }
 };
