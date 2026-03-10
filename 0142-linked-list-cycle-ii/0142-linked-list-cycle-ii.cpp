@@ -16,13 +16,11 @@ public:
             fast=fast->next->next;
             if(slow==fast){
                 slow = head;
-                while(fast && fast->next){
-                    if(slow==fast){
-                        return fast;
-                    }
+                while(slow!=fast){
                     slow = slow->next;
                     fast = fast->next;
                 }
+                return slow;
             }
         }
         return nullptr;
