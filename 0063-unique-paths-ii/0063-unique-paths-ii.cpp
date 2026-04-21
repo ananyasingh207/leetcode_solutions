@@ -1,16 +1,14 @@
 class Solution {
 public:
     int getPaths(vector<vector<int>>& obstacleGrid,int n, int m, int r, int c, vector<vector<int>>& dp){
-        if(r==n-1 && c==m-1 && obstacleGrid[r][c]!=1){
-            dp[r][c] = 1;
-            return dp[r][c];
-        }
         if(r>n-1 || c>m-1){
             return 0;
         }
         if(obstacleGrid[r][c]==1){
-            dp[r][c] = 0;
-            return dp[r][c];
+            return 0;
+        }
+        if(r==n-1 && c==m-1 && obstacleGrid[r][c]!=1){
+            return 1;
         }
         if(dp[r][c]!=-1){
             return dp[r][c];
