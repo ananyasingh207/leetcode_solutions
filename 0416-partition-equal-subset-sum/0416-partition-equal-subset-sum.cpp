@@ -1,32 +1,29 @@
 class Solution {
 public:
-
-    vector<vector<int>> dp;
-
-    int partitionSum(vector<int>& nums, int target, int index){
-        if(target==0){
-            return 1;
+    bool partition(vector<int>& nums, int n, int index, int sum, int curr_sum, vector<vector<int>>& dp){
+        if(index>n-1 || curr_sum>sum){
+            return false;
         }
-        if(index==nums.size() || target<0){
-            return 0;
+        if(curr_sum==sum){
+            return true;
         }
-        if(dp[index][target]!=-1){
-            return dp[index][target];
+        if(dp[index][curr_sum]!=-1){
+            return dp[index][curr_sum];
         }
-        int include = partitionSum(nums,target-nums[index],index+1);
-        int exclude = partitionSum(nums,target,index+1);
-        dp[index][target] = exclude || include;
-        return dp[index][target];
+        bool include = partition(nums,n,index+1,sum,curr_sum+nums[index],dp);
+        bool exclude = partition(nums,n,index+1,sum,curr_sum,dp);
+        dp[index][curr_sum] = include || exclude;
+        return dp[index][curr_sum];
     }
 
     bool canPartition(vector<int>& nums) {
+        int n = nums.size();
         int sum = accumulate(nums.begin(),nums.end(),0);
         if(sum%2!=0){
             return false;
         }
         sum=sum/2;
-        dp.resize(nums.size(),vector<int>(sum+1,-1));
-        partitionSum(nums,sum,0);
-        return partitionSum(nums,sum,0);
+        vector<vector<int>> dp(n,vector<int>(sum+1,-1));
+        return partition(nums,n,0,sum,0,dp);
     }
 };
