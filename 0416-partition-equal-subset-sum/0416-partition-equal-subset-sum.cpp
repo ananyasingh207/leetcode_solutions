@@ -23,7 +23,7 @@ public:
             return false;
         }
         sum=sum/2;
-        vector<vector<int>> dp(n,vector<int>(sum,-1));
+        vector<vector<int>> dp(n,vector<int>(sum+1,-1));
         return partition(nums,n,0,sum,0,dp);
     }
 };
