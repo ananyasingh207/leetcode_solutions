@@ -1,8 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> adj;
-    unordered_map<int,bool> visited;
-
+    
     void buildAdj(vector<vector<int>>& edges){
         for(auto edge : edges){
             int u = edge[0];
@@ -12,27 +11,29 @@ public:
         }
     }
 
-    bool dfs(vector<vector<int>>& adj, int source, int destination){
-        if(source==destination){
-            return true;
-        }
-        visited[source] = true;
-        for(auto node : adj[source]){
-            if(!visited[node]){
-                if(dfs(adj,node,destination)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
         if(n==0){
             return true;
         }
+        unordered_map<int,bool> visited;
         adj.resize(n);
         buildAdj(edges);
-        return dfs(adj,source,destination);
+        queue<int> eq;
+        eq.push(source);
+        visited[source] = true;
+        while(!eq.empty()){
+            int front = eq.front();
+            eq.pop();
+            if(front==destination){
+                return true;
+            }
+            for(auto nb : adj[front]){
+                if(!visited[nb]){
+                    visited[nb] = true;
+                    eq.push(nb);
+                }
+            }
+        }
+        return false;
     }
 };
