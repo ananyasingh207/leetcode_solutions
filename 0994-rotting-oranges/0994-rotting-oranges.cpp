@@ -18,6 +18,8 @@ public:
             }
         }
         int ans = 0;
+        vector<int> dr = {1,0,0,-1};
+        vector<int> dc = {0,1,-1,0};
         while (!q.empty()) {
             auto temp = q.front();
             q.pop();
@@ -25,25 +27,14 @@ public:
             int j = temp.first.second;
             int t = temp.second;
             ans = max(ans, t);
-            if (i - 1 >= 0 && !visited[i - 1][j] && grid[i - 1][j] == 1) {
-                q.push({{i - 1, j}, t + 1});
-                visited[i - 1][j] = true;
-                fresh--;
-            }
-            if (j - 1 >= 0 && !visited[i][j - 1] && grid[i][j - 1] == 1) {
-                q.push({{i, j - 1}, t + 1});
-                visited[i][j - 1] = true;
-                fresh--;
-            }
-            if (j + 1 < m && !visited[i][j + 1] && grid[i][j + 1] == 1) {
-                q.push({{i, j + 1}, t + 1});
-                visited[i][j + 1] = true;
-                fresh--;
-            }
-            if (i + 1 < n && !visited[i + 1][j] && grid[i + 1][j] == 1) {
-                q.push({{i + 1, j}, t + 1});
-                visited[i + 1][j] = true;
-                fresh--;
+            for(int k=0;k<4;k++){
+                int r = i+dr[k];
+                int c = j+dc[k];
+                if(r>=0 && c>=0 && r<n && c<m && !visited[r][c] && grid[r][c]==1){
+                    q.push({{r,c},t+1});
+                    visited[r][c] = true;
+                    fresh--;
+                }
             }
         }
         if(fresh>0){
