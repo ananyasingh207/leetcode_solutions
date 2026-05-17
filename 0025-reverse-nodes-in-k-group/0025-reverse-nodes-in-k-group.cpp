@@ -10,43 +10,52 @@
  */
 class Solution {
 public:
-    ListNode* reverseNode(ListNode* head, int k){
+    ListNode* rev(ListNode* head, int k){
+        if(head==nullptr || head->next==nullptr){
+            return head;
+        }
+        ListNode* temp = head;
         ListNode* prev = nullptr;
-        ListNode* curr = head;
-        while(curr && k){
-            ListNode* nxt = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = nxt;
+        while(temp && k){
+            ListNode* nxt = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = nxt;
             k--;
         }
         return prev;
     }
 
     ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode* temp = head;
-        int count = 0;
-        while(temp){
-            count++;
-            temp=temp->next;
+        if(head==nullptr || head->next==nullptr){
+            return head;
         }
-        ListNode* dummy = new ListNode(0);
-        dummy->next = head;
-        ListNode* prevTail = dummy;
-        temp = head;
-        while(count>=k){
+        ListNode* temp = head;
+        ListNode* newHead = nullptr;
+        ListNode* prevTail = nullptr;
+        while(temp){
+            ListNode* curr = temp;
+            ListNode* tail = temp;
             ListNode* nextHead = temp;
-            for(int i=0;i<k;i++){
+            int b = k;
+            while(b && nextHead){
+                b--;
                 nextHead = nextHead->next;
             }
-            ListNode* tail = temp;
-            ListNode* newHead = reverseNode(temp,k);
-            prevTail->next = newHead;
+            if(b>0){
+                break;
+            }
+            ListNode* revHead = rev(curr,k);
+            if(temp==head){
+                newHead = revHead;
+            }
+            else{
+                prevTail->next = revHead;
+            }
             tail->next = nextHead;
             prevTail = tail;
             temp = nextHead;
-            count-=k;
         }
-        return dummy->next;
+        return newHead;
     }
 };
