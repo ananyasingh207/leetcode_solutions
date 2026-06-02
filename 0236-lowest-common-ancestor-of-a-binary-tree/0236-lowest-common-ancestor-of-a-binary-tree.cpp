@@ -9,10 +9,9 @@
  */
 class Solution {
 public:
-    // TreeNode* lca = 
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(root==nullptr){
-            return root;
+            return nullptr;
         }
         if(root==p || root==q){
             return root;
@@ -22,7 +21,7 @@ public:
         if(left && right){
             return root;
         }
-        if(left!=nullptr){
+        if(left){
             return left;
         }
         else{
