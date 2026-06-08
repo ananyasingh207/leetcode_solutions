@@ -4,8 +4,6 @@ public:
     stack<int> output;
 
     MyQueue() {
-        // input.top() = -1;
-        // output.top() = -1;
     }
     
     void push(int x) {
