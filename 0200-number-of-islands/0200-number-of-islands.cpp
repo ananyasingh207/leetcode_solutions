@@ -21,6 +21,20 @@ public:
         }
     }
 
+    void dfs(vector<vector<char>>& grid, vector<vector<bool>>& visited, int r, int c, int n, int m){
+        if(r>=n || r<0 || c>=m || c<0 ){
+            return;
+        }
+        if(visited[r][c] || grid[r][c]!='1'){
+            return;
+        }
+        visited[r][c] = true;
+        dfs(grid, visited, r+1 , c ,n,m);
+        dfs(grid, visited, r , c+1 ,n,m);
+        dfs(grid, visited, r-1 , c ,n,m);
+        dfs(grid, visited, r , c-1 ,n,m);
+    }
+
     int numIslands(vector<vector<char>>& grid) {
         int n = grid.size();
         int m = grid[0].size();
@@ -30,7 +44,7 @@ public:
             for(int j=0;j<m;j++){
                 if(!visited[i][j] && grid[i][j]=='1'){
                     island++;
-                    bfs(grid, visited, i, j, n, m);
+                    dfs(grid, visited, i, j, n, m);
                 }
             }
         }
