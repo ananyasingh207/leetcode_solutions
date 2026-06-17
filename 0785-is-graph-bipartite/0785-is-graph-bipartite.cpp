@@ -18,7 +18,7 @@ public:
                 for(auto node : graph[front]){
                     if(color[node]==-1){
                         q.push(node);
-                        color[node] = 1 - color[front];
+                        color[node] = !color[front];
                     }
                     else if(color[node]!=-1 && color[node]==color[front]){
                         return false;
