@@ -1,27 +1,6 @@
 class Solution {
 public:
     int maxAbsoluteSum(vector<int>& nums) {
-        // int n = nums.size();
-        // int maxSum = -1;
-        // int sum = 0;
-        // int i = 0;
-        // while(i<n){
-        //     sum = abs(sum+nums[i]);
-        //     if(sum>maxSum){
-        //         maxSum = sum;
-        //     }
-        //     i++;
-        // }
-        // i = 0;
-        // sum = 0;
-        // while(i<n){
-        //     sum = abs(sum+nums[i]);
-        //     if(sum>maxSum){
-        //         maxSum = sum;
-        //     }
-        //     i++;
-        // }
-        // return maxSum;
         int n = nums.size();
         int localMax = nums[0];
         int localMin = nums[0];
