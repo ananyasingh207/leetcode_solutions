@@ -10,7 +10,6 @@ public:
             st.insert(nums[i]);
         }
         int maxCount = 0;
-        int i =0;
         for(auto num : st){
             int count = 1;
             if(!st.count(num-1)){
