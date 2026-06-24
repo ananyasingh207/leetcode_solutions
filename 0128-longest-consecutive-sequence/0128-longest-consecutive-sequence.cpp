@@ -8,14 +8,8 @@ public:
         sort(nums.begin(),nums.end());
         int maxCount = 1;
         int count = 1;
-        int j = 1;
         for(int i=1;i<n;i++){
-            if(nums[i]!=nums[i-1]){
-                nums[j]=nums[i];
-                j++;
-            }
-        }
-        for(int i=1;i<j;i++){
+            if(nums[i]==nums[i-1]) continue;
             if(nums[i-1]+1==nums[i]){
                 count++;
             }
