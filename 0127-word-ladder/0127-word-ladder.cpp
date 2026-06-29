@@ -20,13 +20,12 @@ public:
             for(int i=0;i<start.size();i++){
                 char og = start[i];
                 for(char ch='a';ch<='z';ch++){
+                    if(ch==og) continue;
                     start[i]=ch;
                     if(start==endWord) return steps+1;
-                    if(!visited[start]){
+                    if(mp.find(start)!=mp.end() && !visited[start]){
                         visited[start]=true;
-                        if(mp.find(start)!=mp.end()){
-                            q.push({start,steps+1});
-                        }
+                        q.push({start,steps+1});
                     }
                 }
                 start[i] = og;
