@@ -3,23 +3,38 @@ public:
     void setZeroes(vector<vector<int>>& matrix) {
         int n = matrix.size();
         int m = matrix[0].size();
-        vector<bool> r(n,false);
-        vector<bool> c(m,false);
+        bool firstColZero = false;
+        bool firstRowZero = false;
         for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
+            if(matrix[i][0]==0) firstColZero = true;
+        }
+        for(int j=0;j<m;j++){
+            if(matrix[0][j]==0) firstRowZero = true;
+        }
+        for(int i=1;i<n;i++){
+            for(int j=1;j<m;j++){
                 if(matrix[i][j]==0){
-                    r[i] = true;
-                    c[j] = true;
+                    matrix[i][0]=0;
+                    matrix[0][j]=0;
                 }
             }
         }
-        for(int i=0;i<n;i++){
+        for(int i=1;i<n;i++){
+            for(int j=1;j<m;j++){
+                if(matrix[i][0]==0 || matrix[0][j]==0){
+                    matrix[i][j]=0;
+                }
+            }
+        }
+        if(firstRowZero){
             for(int j=0;j<m;j++){
-                if(r[i] || c[j]){
-                    matrix[i][j] = 0;
-                }
+                matrix[0][j]=0;
             }
         }
-        
+        if(firstColZero){
+            for(int i=0;i<n;i++){
+                matrix[i][0]=0;
+            }
+        }
     }
 };
