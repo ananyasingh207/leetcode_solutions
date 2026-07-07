@@ -4,19 +4,16 @@ public:
         int n = s.length();
         int i = 0;
         int j = 0;
-        int mlen = 0;
-        unordered_map<int, int> visited;
-        while(i<n && j<n){
-            if(!visited[s[j]]){
-                visited[s[j]]=1;
-                mlen = max(mlen,j-i+1);
+        unordered_map<char,int> visited;
+        int maxLen = 0;
+        for(int i=0;i<n;i++){
+            while(visited[s[i]]){
+                visited[s[j]]=false;
                 j++;
             }
-            else{
-                visited[s[i]]=0;
-                i++;
-            }
+            visited[s[i]]=true;
+            maxLen = max(maxLen,i-j+1);
         }
-        return mlen;
+        return maxLen;
     }
 };
