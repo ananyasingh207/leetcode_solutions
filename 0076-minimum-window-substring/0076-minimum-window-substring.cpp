@@ -3,35 +3,28 @@ public:
     string minWindow(string s, string t) {
         int n = s.length();
         int m = t.length();
-        unordered_map<char, int> mpt;
-        unordered_map<char, int> mps;
+        unordered_map<char, int> mp;
         for(int i=0;i<m;i++){
-            mpt[t[i]]++;
+            mp[t[i]]++;
         }
-        pair<int,int> minString = {INT_MAX,-1};
-        int j  = 0;
-        for(int i=0;i<n;i++){
-            mps[s[i]]++;
-            while (true) {
-                bool valid = true;
-                for (auto it : mpt) {
-                    if (mps[it.first] < it.second) {
-                        valid = false;
-                        break;
-                    }
+        int l = 0;
+        int r = 0;
+        int count = 0;
+        pair<int, int> minString = {INT_MAX,-1};
+        while(r<n){
+            if(mp[s[r]]>0) count++;
+            mp[s[r]]--;
+            while(count==m){
+                if(r-l+1 < minString.first){
+                    minString.first = r-l+1;
+                    minString.second = l;
                 }
-                if (!valid) break;
-                if(i-j+1 < minString.first){
-                    minString.first =  i - j + 1;
-                    minString.second = j;
-                }
-                mps[s[j]]--;
-                j++;
+                mp[s[l]]++;
+                if(mp[s[l]]>0) count--;
+                l++; 
             }
+            r++;
         }
-        if (minString.first == INT_MAX)
-            return "";
-
-        return s.substr(minString.second, minString.first);
+        return minString.first == INT_MAX ? "" : s.substr(minString.second,minString.first);
     }
 };
