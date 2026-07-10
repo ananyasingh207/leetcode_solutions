@@ -6,7 +6,7 @@ public:
         for(int i=0;i<n;i++){
             if(maxIndex<i) return false;
             maxIndex = max(maxIndex,i+nums[i]);
-            if(maxIndex==n-1) return true;
+            if(maxIndex>=n-1) return true;
         }
         return true;
     }
