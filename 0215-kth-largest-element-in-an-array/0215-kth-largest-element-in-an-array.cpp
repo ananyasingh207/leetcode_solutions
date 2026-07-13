@@ -6,7 +6,7 @@ public:
         for(int num : nums){
             pq.push(num);
         }
-        while(pq.size()>n-k+1){
+        for(int i=0;i<k-1;i++){
             pq.pop();
         }
         return pq.top();
