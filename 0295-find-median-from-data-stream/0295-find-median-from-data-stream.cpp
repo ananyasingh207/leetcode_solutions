@@ -6,11 +6,10 @@ public:
     }
     
     void addNum(int num) {
-        if(maxHeap.empty() || num<maxHeap.top()){
-            maxHeap.push(num);
-        }
-        else{
-            minHeap.push(num);
+        maxHeap.push(num);
+        if(!minHeap.empty() && maxHeap.top()>minHeap.top()){
+            minHeap.push(maxHeap.top());
+            maxHeap.pop();
         }
         if(maxHeap.size()>minHeap.size()+1){
             minHeap.push(maxHeap.top());
