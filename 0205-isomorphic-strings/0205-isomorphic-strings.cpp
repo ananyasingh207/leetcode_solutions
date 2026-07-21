@@ -14,7 +14,7 @@ public:
                 mapT[b] = a;
             }
             else{
-                if(mapS[a]!=b && mapT[b]!=a){
+                if(mapS[a]!=b || mapT[b]!=a){
                     return false;
                 }
             }
