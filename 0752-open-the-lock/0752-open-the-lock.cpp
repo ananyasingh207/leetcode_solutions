@@ -9,7 +9,7 @@ public:
         for(int i=0;i<deadends.size();i++){
             mp[deadends[i]]=true;
         }
-        if(mp.find("0000")!=mp.end()) return -1;
+        if(mp.count("0000")) return -1;
         unordered_map<string,bool> visited;
         visited["0000"] = true;
         while(!q.empty()){
@@ -17,7 +17,7 @@ public:
             q.pop();
             string curr = front.first;
             int moves = front.second;
-            for(int i=0;i<curr.size();i++){
+            for(int i=0;i<4;i++){
                 char og  = curr[i];
                 char up = (og=='9') ? '0' : og+1;
                 curr[i]=up;
