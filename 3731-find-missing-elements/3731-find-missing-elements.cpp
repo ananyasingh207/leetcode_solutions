@@ -2,13 +2,16 @@ class Solution {
 public:
     vector<int> findMissingElements(vector<int>& nums) {
         int n = nums.size();
-        sort(nums.begin(),nums.end());
+        int mn = INT_MAX;
+        int mx = INT_MIN;
         vector<int> ans;
         unordered_map<int,bool> mp;
         for(int i=0;i<n;i++){
+            mn = min(mn,nums[i]);
+            mx = max(mx,nums[i]);
             mp[nums[i]]=true;
         }
-        for(int i=nums[0];i<=nums[n-1];i++){
+        for(int i=mn;i<=mx;i++){
             if(mp.count(i)) continue;
             else ans.push_back(i);
         }
