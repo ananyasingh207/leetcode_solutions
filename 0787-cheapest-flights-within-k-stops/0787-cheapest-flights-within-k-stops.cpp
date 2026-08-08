@@ -11,17 +11,17 @@ public:
         queue<pair<pair<int,int>,int>> q;
         vector<int> dist(n,INT_MAX);
         q.push({{src,0},0});
+        dist[src] = 0;
         while(!q.empty()){
             auto front = q.front();
             int node = front.first.first;
             int wt = front.first.second;
             int stops = front.second;
             q.pop();
-            if(stops>k) continue;
             for(auto nb : adj[node]){
                 int nbNode = nb.first;
                 int nbWt = nb.second;
-                if(dist[nbNode]>nbWt+wt){
+                if(dist[nbNode]>nbWt+wt && stops <= k){
                     dist[nbNode]=nbWt+wt;
                     q.push({{nbNode,nbWt+wt},stops+1});
                 }
