@@ -34,7 +34,7 @@ public:
         }
         int provinces = n;
         for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
+            for(int j=i+1;j<n;j++){
                 if(isConnected[i][j]==1){
                     if(find(i)==find(j)) continue;
                     else{
