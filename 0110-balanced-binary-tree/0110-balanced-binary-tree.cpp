@@ -12,17 +12,11 @@
 class Solution {
 public:
     int traverse(TreeNode* root){
-        if(root==nullptr){
-            return 0;
-        }
+        if(root==nullptr) return 0;
         int left = traverse(root->left);
-        if(left == -1){
-            return -1;
-        }
+        if(left==-1) return -1;
         int right = traverse(root->right);
-        if(right == -1){
-            return -1;
-        }
+        if(right==-1) return -1;
         if(abs(left-right)>1){
             return -1;
         }
@@ -30,12 +24,8 @@ public:
     }
 
     bool isBalanced(TreeNode* root) {
-        if(root==nullptr){
-           return true; 
-        }
-        if(traverse(root)==-1){
-            return false;
-        }
+        if(root==nullptr) return true;
+        if(traverse(root)==-1) return false;
         return true;
     }
 };
