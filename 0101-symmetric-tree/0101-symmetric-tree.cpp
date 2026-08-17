@@ -19,7 +19,10 @@ public:
         if(node1==nullptr || node2==nullptr){
             return false;
         }
-        return node1->val==node2->val && isMirror(node1->left,node2->right) && isMirror(node1->right,node2->left);
+        if(node1->val!=node2->val){
+            return false;
+        }
+        return isMirror(node1->left,node2->right) && isMirror(node1->right,node2->left);
     }
 
     bool isSymmetric(TreeNode* root) {
