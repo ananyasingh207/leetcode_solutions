@@ -11,21 +11,12 @@
  */
 class Solution {
 public:
-
     TreeNode* prev = nullptr;
     TreeNode* first = nullptr;
     TreeNode* second = nullptr;
 
-    void swap(int& a, int& b){
-        int temp = a;
-        a = b;
-        b = temp;
-    }
-
-    void inorder(TreeNode* root) {
-        if(root==nullptr){
-            return;
-        }
+    void inorder(TreeNode* root){
+        if(root==nullptr) return;
         inorder(root->left);
         if(prev){
             if(prev->val>root->val){
@@ -35,10 +26,9 @@ public:
                 second = root;
             }
         }
-        prev = root;
+        prev=root;
         inorder(root->right);
     }
-
     void recoverTree(TreeNode* root) {
         inorder(root);
         if(first && second){
