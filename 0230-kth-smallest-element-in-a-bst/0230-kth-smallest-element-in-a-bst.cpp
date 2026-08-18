@@ -12,7 +12,7 @@
 class Solution {
 public:
     void traverse(TreeNode* root, int& index,int& ans,int k){
-        if(root==nullptr || index>=k){
+        if(root==nullptr){
             return;
         }
         traverse(root->left,index,ans,k);
