@@ -11,17 +11,15 @@
  */
 class Solution {
 public:
-    bool check(TreeNode* root, long mn, long mx){
-        if(root==nullptr){
-            return true;
-        }
-        if(root->val <= mn || root->val>=mx){
-            return false;
-        }
-        return check(root->left,mn,root->val) && check(root->right,root->val,mx);
+    bool validateBST(TreeNode* root, long long mx, long long mn){
+        if(root==nullptr) return true;
+        if(root->val<=mn || root->val>=mx) return false;
+        bool left = validateBST(root->left,root->val,mn);
+        bool right = validateBST(root->right,mx,root->val);
+        return left && right;
     }
 
     bool isValidBST(TreeNode* root) {
-        return check(root,LONG_MIN, LONG_MAX);
+        return validateBST(root,LLONG_MAX,LLONG_MIN);
     }
 };
