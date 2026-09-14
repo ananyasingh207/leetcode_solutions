@@ -8,10 +8,8 @@ public:
         }
         for(int i=0;i<n;i++){
             int key = target - nums[i];
-            if(mp.find(key)!=mp.end()){
-                if(mp[key]!=i){
-                    return {i,mp[key]};
-                }
+            if(mp.find(key)!=mp.end() && mp[key]!=i){
+                return {i,mp[key]};
             }
         }
         return {};
