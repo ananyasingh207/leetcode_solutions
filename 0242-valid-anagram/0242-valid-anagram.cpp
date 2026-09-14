@@ -8,12 +8,12 @@ public:
         for(int i=0;i<n;i++){
             freq[s[i]-'a']++;
         }
-        for(int i=0;i<n;i++){
+        for(int i=0;i<m;i++){
             freq[t[i]-'a']--;
             if(freq[t[i]-'a']<0) return false;
         }
-        for(int i=0;i<freq.size();i++){
-            if(freq[i]>0) return false;
+        for(int i=0;i<26;i++){
+            if(freq[i]!=0) return false;
         }
         return true;
     }
